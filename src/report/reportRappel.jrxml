@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportRappel" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85d62a3d-8534-4c09-84be-79107b680ab4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<scriptlet name="scriptlet1" class="net.sf.jasperreports.engine.JRDefaultScriptlet"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT a.id_a,a.ident_puce, t.lib_t,r.lib_r, v.`date_vacc`, v.`date_rappel`, v.`observation`, vac.nom_vaccin FROM `vaccination` v, vaccin vac, animal a, race r, type t WHERE TO_DAYS(date_rappel) - TO_DAYS(NOW()) >=0 and   TO_DAYS(date_rappel) - TO_DAYS(NOW()) <=14 and a.id_a=v.id_a and vac.id_vaccin = v.id_vaccin and a.id_r = r.id_r and r.id_t = t.id_t]]>
+	</queryString>
+	<field name="id_a" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ident_puce" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lib_t" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lib_r" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_vacc" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_rappel" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_vaccin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="270" y="0" width="298" height="62" uuid="d2f68d57-ec65-4943-86e8-e0543d2e52a2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="36" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Alert vaccination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="303" y="62" width="279" height="22" uuid="d1e38a10-0b9e-4e92-adce-1a79e14c40df"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Intervention à faire dans les 14 jours]]></text>
+			</staticText>
+			<image>
+				<reportElement x="600" y="-5" width="385" height="141" uuid="e653619e-0c66-45aa-8e2d-babe660b289f"/>
+				<imageExpression><![CDATA["C:\\Users\\Super-Afg\\Documents\\NetBeansProjects\\Memoire_copy\\src\\report\\medicament.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="0d665e0e-9b87-474d-b5fd-8c191abf0b55"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="15" forecolor="#736343" uuid="fbb34e68-60e2-44a9-a5e0-3c82438b4429"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[N° id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="100" height="15" forecolor="#736343" uuid="b82fa309-54ac-4cd6-901f-bd1479894a21"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Identifant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="0" width="100" height="15" forecolor="#736343" uuid="3b6a9706-bc48-40fa-8ba1-932ecec00a86"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Espèce]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="0" width="100" height="15" forecolor="#736343" uuid="e610e512-db1f-4a89-88bb-ee8f081e9805"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Race]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="100" height="15" forecolor="#736343" uuid="f32190bc-e890-4499-90be-ff6cedc3e7ac"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Vaccination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="500" y="0" width="100" height="15" forecolor="#736343" uuid="86fb461c-79bf-44b6-844d-8820f3cceded"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Rappel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="600" y="0" width="100" height="15" forecolor="#736343" uuid="52e36984-6ef9-477b-a4ec-8ba780412af6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Observation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="700" y="0" width="100" height="15" forecolor="#736343" uuid="079deb70-9496-41eb-92ad-7345a24ab876"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Type vaccin]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="7b5c9e4d-e0f9-489a-9358-fb6d04805881"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="100" height="15" uuid="0ffe0653-98b1-4830-86dd-cce0bf5781dc"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{id_a}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="100" y="0" width="100" height="15" uuid="086fc5e8-58bc-4c48-999f-23896b49fcf9"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{ident_puce}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="200" y="0" width="100" height="15" uuid="8a091fe9-e09c-497c-93a0-7e66e9f84c23"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{lib_t}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="300" y="0" width="100" height="15" uuid="2f08f04e-d02f-41db-a72c-532b7b2d9e52"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{lib_r}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="400" y="0" width="100" height="15" uuid="90a54213-684d-445a-a011-e9748de374a4"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{date_vacc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="500" y="0" width="100" height="15" uuid="3ec3946f-abda-4841-a2c7-21e00b6fb214"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{date_rappel}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="600" y="0" width="100" height="15" uuid="c5403ca2-0ea6-4a36-8ea2-bcfc0dfc456f"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{observation}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="700" y="0" width="100" height="15" uuid="704f6299-c81b-419b-915e-601ab820b250"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{nom_vaccin}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="7110e72f-7dc1-4577-86d0-1fb92a53701d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="1c5a00de-5a69-46fe-bd6e-6711153a6444"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="68f7992e-f58e-4f7b-99ac-701cd00ec89e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="8cf7e69b-a734-4a13-ac44-a641a4205243"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="ebd340b5-88bf-4f92-8d58-5e23b5f854d6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
